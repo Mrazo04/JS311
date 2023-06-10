@@ -1,0 +1,10 @@
+{
+    "name": "First-Express-Server",
+    "scripts": {
+        "start": "node main.js"
+    },
+    "dependencies": {
+        "backbone": "^1.4.1",
+        "express": "^4.18.2"
+    }
+} 

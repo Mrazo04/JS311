@@ -1,9 +1,11 @@
 //import express framework
 let express = require("express");
 
+
 //creat our application object
 let app = express();
 
+app.use(express.static("public"));
 //make sure our application can parse json
 app.use(express.json());
 

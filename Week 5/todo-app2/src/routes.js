@@ -18,4 +18,7 @@ router.post("/todos", controller.addEntry);
 
 router.put("/todos/:id", controller.updateEntry);
 
+
+router.patch("/todos/:id", controller.patchEntry);
+
 module.exports = router;

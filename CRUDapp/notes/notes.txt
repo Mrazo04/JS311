@@ -1,0 +1,11 @@
+fleisure-- an app that helps you find family activities near you 
+
+to add an entity = add activities(id, company name/activity name, age group, outdoor/indoor activity, price, description, location)
+
+list summaries = list all activities based on city and state(company name/activity name, age group, price)
+
+details about one single activity(company name/activity name, age group, outdoor/indoor activity, price, description, location, phone number, hours of operation)
+
+update existing activity (price could change, company/activity could have a second location, change of number)
+
+delete an existing activity

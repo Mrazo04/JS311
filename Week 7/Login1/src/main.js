@@ -10,6 +10,9 @@ app.use(express.json());
 let authRoutes = require("./routes/authRoutes");
 app.use(authRoutes);
 
+let helloRoutes = require("./routes/helloRoutes");
+app.use(helloRoutes);
+
 //let todoRoutes = require("./routes/todoRoutes")
 //app.use(todoRoutes);
 

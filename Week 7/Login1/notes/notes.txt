@@ -23,3 +23,24 @@ Steps:
 4.  if the user exists, then compare the hash we just generated to the hash from the database
 to decide if the login failed or not 
 5.  if the user does not exist, then say login failed
+
+--------------------------------------------------------------
+
+Part 2
+
+4 routes
+POST /register: takes in a email and password, add a user row in the users tables
+
+POST /login: checks the email and password against the users tables
+        (new) and returns a Json Web token if the user is authenticated correctly
+
+GET /hello: this route responds with a generic message. Does not matter if the user is authenticated or not
+
+GET /secretHandshake: this route responds with a personalized message only if the user is authenticated.
+    This route is expecting the Json Web Token (this is protected route because it needs a token)
+
+Signed token:
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.// this part is meta, info about how the token is created
+eyJpZCI6MSwiZW1haWwiOiJtdW5ndWlhbWlja2V5QGdtYWlsLmNvbSIsImlhdCI6MTY4ODk1OTc2NSwiZXhwIjoxNjg5MDQ2MTY1fQ.//this is the payload(not secret)
+dq8Sk6DX-wbfYuEboqy6ow-cUq2d_SRBhnHsUoXaDaM"//this is the signature of the payload(secret part)

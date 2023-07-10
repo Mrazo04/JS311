@@ -1,0 +1,25 @@
+
+
+tell them: 
+
+email and password
+
+they: store the email and a hash for password // it's pretty easy to go from password to hash but very difficult to go from hash to password 
+
+md5sum 
+
+sha224sum
+
+// to build this out we need to store email and hash
+/register route: this will accept the email and password, but it will store the email and hash
+/login route: this will accept the email and password, it will check to see if there is a hash stored for that email 
+and then will hash the password entered in login route
+and will then check if both hashes (the one stored for the email and the one enetered to login) match
+
+Steps: 
+1.  get info from request, email and password
+2.  convert incoming password into a hash (skip, because the library will compare password to hash)
+3.  retrieve the hash from the database
+4.  if the user exists, then compare the hash we just generated to the hash from the database
+to decide if the login failed or not 
+5.  if the user does not exist, then say login failed

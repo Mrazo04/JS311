@@ -10,3 +10,9 @@ create table activities (
     state varchar(100), 
     zipcode integer
 );
+
+create table fleisure_users(
+	id integer primary key auto_increment,
+  	email varchar(100) not null unique, 
+  	hash varchar(1000)
+);

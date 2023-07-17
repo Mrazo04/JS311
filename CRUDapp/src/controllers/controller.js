@@ -1,6 +1,6 @@
 
 //making connection swith database
-let db = require("./db");
+let db = require("../../model/db");
 
 let listActivities = function(req, res){
     //should return all activities based on city and state or zip code

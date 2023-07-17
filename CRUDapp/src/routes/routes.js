@@ -1,13 +1,15 @@
- let express = require("express");
+let express = require("express");
 
 let router = express.Router();
 
+let authsMiddleware = require("../middleware/auth")
+
 //importing data from contoller file
-let controller = require("./controller");
+let controller = require("../controllers/controller");
 
 // route to get all the activities available based on city 
 //for now I am only doing Austin, TX
-router.get("/activities", controller.listActivities);
+router.get("/activities", authsMiddleware.checkJWT, controller.listActivities);
 
 // route to get an item by id
 router.get("/activities/:id", controller.getActivity);

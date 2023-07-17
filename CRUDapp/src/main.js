@@ -7,8 +7,12 @@ require("dotenv").config();
 //parsing JSON data
 app.use(express.json());
 
+//register and login route
+let authRoutes = require("./routes/authRoutes");
+app.use(authRoutes);
+
 //inserting routes 
-let routes = require("./routes");
+let routes = require("./routes/routes");
 app.use(routes);
 
 //port listening to app

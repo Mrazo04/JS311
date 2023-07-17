@@ -9,3 +9,15 @@ details about one single activity(company name/activity name, age group, outdoor
 update existing activity (price could change, company/activity could have a second location, change of number)
 
 delete an existing activity
+
+-----------------------------------------------------------------------------------------------------
+
+Registration, login, and authentication
+
+1. Register route
+
+2. login route
+
+3. unprotected route
+
+4. protected route

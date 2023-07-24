@@ -1,10 +1,10 @@
-
+ 
 //making connection swith database
 let db = require("../../model/db");
 
 let listActivities = function(req, res){
-    //should return all activities based on city and state or zip code
-    let sql = "select id, activity, ageGroup, price, city, state from activities";
+    //should return all activities input into database by company/organization
+    let sql = "select activity_id, activity_name, ageMin, price, city, state from activities";
 
     db.query(sql, function(err, results){
         if(err){
@@ -20,9 +20,9 @@ let getActivity = function(req, res){
     //should return one single activity by the id
     //need id from param
     
-    let id = req.params.id;
-    let sql = "select * from activities where id = ?"
-    let params = [id]
+    let activity_id = req.params.activity_id;
+    let sql = "select * from activities where activity_id = ?"
+    let params = [activity_id]
 
     db.query (sql, params, function(err, results){
         if(err){
@@ -46,20 +46,20 @@ let getActivity = function(req, res){
 let updateActivity = function(req, res){
     //update a single activity
 
-    let id = req.params.id;
-    let activity = req.body.activity;
-    let ageGroup = req.body.ageGroup;
-    let actType = req.body.actType;
+    let activity_id = req.params.activity_id;
+    let activity_name = req.body.activity_name;
+    let ageMin = req.body.ageMin;
+    let ageMax = req.body.ageMax;
+    let activity_type = req.body.activity_type;
     let price = req.body.price;
-    let summary = req.body.summary;
-    let streetAddress = req.body.streetAddress;
+    let street_address = req.body.street_address;
     let city = req.body.city;
     let state = req.body.state;
     let zipcode = req.body.zipcode;
 
 
     //require activity input
-    if(!activity){
+    if(!activity_name){
         res.status(400).json("Activity name is required");
         return;
     };
@@ -71,7 +71,7 @@ let updateActivity = function(req, res){
     };
     
     //require streetAddress
-    if(!streetAddress){
+    if(!street_address){
         res.status(400).json("Street address is required");
         return;
     };
@@ -94,8 +94,8 @@ let updateActivity = function(req, res){
         return;
     };
 
-    let sql = "update activities set activity = ?, ageGroup = ?, actType = ?, price =? , summary = ?, streetAddress = ?, city = ?, state = ?, zipcode = ? where id = ?";
-    let params = [activity, ageGroup, actType, price, summary, streetAddress, city, state, zipcode, id];
+    let sql = "update activities set activity_name = ?, ageMin = ?, ageMax = ?, activity_type = ?, price =? , street_address = ?, city = ?, state = ?, zipcode = ? where activity_id = ?";
+    let params = [activity_name, ageMin, ageMax, activity_type, price, street_address, city, state, zipcode, activity_id];
 
     db.query(sql, params, function(err, results) {
 
@@ -114,18 +114,19 @@ let updateActivity = function(req, res){
 let addActivity = function(req, res){
     //add activity to activity db based on city and state or zip code
 
-    let activity = req.body.activity;
-    let ageGroup = req.body.ageGroup;
-    let actType = req.body.actType;
+    let activity_id = req.params.activity_id;
+    let activity_name = req.body.activity_name;
+    let ageMin = req.body.ageMin;
+    let ageMax = req.body.ageMax;
+    let activity_type = req.body.activity_type;
     let price = req.body.price;
-    let summary = req.body.summary;
-    let streetAddress = req.body.streetAddress;
+    let street_address = req.body.street_address;
     let city = req.body.city;
     let state = req.body.state;
     let zipcode = req.body.zipcode;
 
     //require activity input
-    if(!activity){
+    if(!activity_name){
         res.status(400).json("Activity name is required");
         return;
     };
@@ -137,7 +138,7 @@ let addActivity = function(req, res){
     };
 
     //require streetAddress
-    if(!streetAddress){
+    if(!street_address){
         res.status(400).json("Street address is required");
         return;
     };
@@ -160,8 +161,8 @@ let addActivity = function(req, res){
         return;
     };
 
-    let sql = "insert into activities (activity, ageGroup, actType, price, summary, streetAddress, city, state, zipcode) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    let params = [activity, ageGroup, actType, price, summary, streetAddress, city, state, zipcode];
+    let sql = "insert into activities (activity_name, ageMin, ageMax, activity_type, price, street_address, city, state, zipcode) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    let params =  [activity_name, ageMin, ageMax, activity_type, price, street_address, city, state, zipcode, activity_id];
 
     db.query(sql, params, function(err, results) {
 
@@ -202,4 +203,4 @@ module.exports = {
     updateActivity,
     addActivity,
     deleteActivity
-}
+};
